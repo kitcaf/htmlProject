@@ -1,11 +1,12 @@
 import { createApp } from 'vue'
-import {router} from "./router/index"
+import { router } from "./router/index"
 import App from './App.vue'
 import { createPinia } from 'pinia'
-import {persistedPlugin} from "./stores/persistedstate"
-import {IndexDB} from "./stores/index"
+import { persistedPlugin } from "./stores/persistedstate"
+import { IndexDB } from "./stores/index"
 import './assets/tailwindcss.css'
 import './style.css'
+import "./assets/index.css"
 
 const pinia = createPinia()
 pinia.use(persistedPlugin)

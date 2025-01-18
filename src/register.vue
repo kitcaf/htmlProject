@@ -1,10 +1,10 @@
 <template lang="">
     <!-- component -->
-    <div class="h-screen w-screen">
+    <div class=" h-screen w-full">
       <div class="h-full w-full bg-white m-auto">
         <img src="https://image.freepik.com/free-vector/app-development-illustration_52683-47931.jpg" alt=""class=" lg:w-full  object-cover"/>
         <div class="">
-          <h2 class="text-center text-gray-800 text-2xl font-bold pt-6">创意分享平台</h2>
+          <h2 class="text-center text-gray-800 text-2xl font-bold pt-6">仿小红书前端项目</h2>
           <form class="bg-white rounded-md p-5">
               <h1 class="text-gray-800 font-bold text-2xl mb-6">加入我们!</h1>
               <div class="flex items-center relative border-2 h-11 mb-7 py-2 px-3 rounded-2xl ">
@@ -50,26 +50,26 @@
     </div>
 </template>
 <script lang="ts" setup>
-import {reactive, watchEffect} from 'vue'
-import {validateEmail, validatePassword, validateTwoPassword} from "@/utils/valid.ts"
+import { reactive, watchEffect } from 'vue'
+import { validateEmail, validatePassword, validateTwoPassword } from "@/utils/valid.ts"
 import { userTableStore, User } from '@/stores/user'
-import {navigation} from '@/router/index'
+import { navigation } from '@/router/index'
 
 const store = userTableStore()
 
 const form = reactive({
-    email:'',
-    username: '',
-    password:'',
-    rePassword:'',
+  email: '',
+  username: '',
+  password: '',
+  rePassword: '',
 })
 
 const errors = reactive({
-    email: false as String | Boolean,
-    username:false as String | Boolean,
-    password: false as String | Boolean,
-    rePassword:false as String | Boolean,
-    register: false as String | Boolean,
+  email: false as String | Boolean,
+  username: false as String | Boolean,
+  password: false as String | Boolean,
+  rePassword: false as String | Boolean,
+  register: false as String | Boolean,
 })
 
 watchEffect(() => {
@@ -103,7 +103,7 @@ const register = () => {
     return
   }
 
-  const user: Omit<User, 'id'>  = {
+  const user: Omit<User, 'id'> = {
     email: form.email,
     username: form.username,
     password: form.password,

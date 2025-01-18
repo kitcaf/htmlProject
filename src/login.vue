@@ -1,10 +1,10 @@
 <template lang="">
     <!-- component -->
-    <div class="h-screen w-screen">
+    <div class="w-full h-screen">
       <div class="h-full w-full bg-white m-auto">
         <img src="https://image.freepik.com/free-vector/app-development-illustration_52683-47931.jpg" alt=""class=" lg:w-full  object-cover"/>
         <div class="">
-          <h2 class="text-center text-gray-800 text-2xl font-bold pt-6">创意分享平台</h2>
+          <h2 class="text-center text-gray-800 text-2xl font-bold pt-6">仿小红书前端项目</h2>
           <form class="bg-white rounded-md p-5">
               <h1 class="text-gray-800 font-bold text-2xl mb-6">欢迎回来!</h1>
               <div class="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
@@ -32,20 +32,20 @@
       </div>
     </div>
 </template>
-<script lang="ts" setup >
-import {reactive} from 'vue'
+<script lang="ts" setup>
+import { reactive } from 'vue'
 import { userTableStore } from '@/stores/user'
-import {navigation} from '@/router/index'
+import { navigation } from '@/router/index'
 
 const store = userTableStore()
 
 const form = reactive({
-    username: '',
-    password:'',
+  username: '',
+  password: '',
 })
 
 const errors = reactive({
-    login: false as String | Boolean,
+  login: false as String | Boolean,
 })
 
 const login = () => {
@@ -55,7 +55,7 @@ const login = () => {
   }
   try {
     let userToken = store.login(form.username, form.password)
-    
+
     // 登入成功 --- 将用户信息存储在cookie中
     document.cookie = `user=${JSON.stringify(userToken)}; path=/; max-age=3600; secure; samesite=strict`;
 

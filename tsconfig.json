@@ -3,9 +3,13 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable", "esnext"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable",
+      "esnext"
+    ],
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -13,19 +17,27 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-
     /* Linting */
     "strict": true, //这里可能会ts和js混用，所以关闭strict
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    },
-    "baseUrl": "."
-    
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite-env.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite-env.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
