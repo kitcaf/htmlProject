@@ -132,9 +132,10 @@
        
     </div>
 </template>
-<script setup lang="ts">
+
+<script lang="ts" setup>
 import uploadImgCom from "@/components/uploadImg.vue"
-import { reactive, ref, onMounted, computed} from "vue";
+import { reactive, ref, onMounted, computed } from "vue";
 import { navigation } from '@/router/index';
 import { blogSharesTable, IndexDB, userTableStore, User } from "@/stores/index"
 import { getTime } from "@/utils/time"
@@ -181,7 +182,7 @@ const sentMsg = () => {
     if (msg.value.length == 0) return;
     mssageList.value.push({ whoId: curUser.id, content: msg.value });
     msg.value = "";
-    
+
     curUser.score! -= 5;
     userDb.updataUser(curUser);
 
@@ -228,7 +229,7 @@ const publishNote = async () => {
     })
 }
 
-const copyText = (index:number) =>{
+const copyText = (index: number) => {
     //复制文本
     let text = mssageList.value[index].content;
     navigator.clipboard.writeText(text).then(() => {

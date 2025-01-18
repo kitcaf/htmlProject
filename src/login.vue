@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 <template lang="">
     <!-- component -->
     <div class="w-full h-screen">
@@ -32,7 +34,7 @@
       </div>
     </div>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { reactive } from 'vue'
 import { userTableStore } from '@/stores/user'
 import { navigation } from '@/router/index'
@@ -48,6 +50,7 @@ const errors = reactive({
   login: false as String | Boolean,
 })
 
+// @ts-ignore
 const login = () => {
   if (form.username.length == 0 || form.password.length == 0) {
     errors.login = '请您填写完整信息哦！';

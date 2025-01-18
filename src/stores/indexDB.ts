@@ -149,7 +149,7 @@ export class IndexDB {
       const store = transaction.objectStore('blogShares');
       const index = store.index('titleAndVisibility');
       const request = index.openCursor(IDBKeyRange.bound([title, visible ? 1 : 0], [title + '\uffff', visible ? 1 : 0]));
-      
+
       const results: blogSharesTable[] = [];
       let count = 0;
 
@@ -227,8 +227,8 @@ export class IndexDB {
   }
 
   //获取关注列表的作者的所有的文章
-  async getNoteFromInterest(interest: number[], page: number, pageSize: number) {
-    
+  async getNoteFromInterest(_interest: number[], _page: number, _pageSize: number) {
+
   }
 
   //获取某个id下的note数据
@@ -243,7 +243,7 @@ export class IndexDB {
     });
   }
 
-  
+
 
 
   //修改note信息 

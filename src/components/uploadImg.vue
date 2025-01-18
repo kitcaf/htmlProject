@@ -37,26 +37,26 @@
  * 支持图片文件和回显
  * 同时支持裁剪
  */
-import { ref, reactive, watch, onMounted, inject} from 'vue';
+import { ref, reactive, watch, onMounted, inject } from 'vue';
 import Vue3DraggableResizable from 'vue3-draggable-resizable'
-import {IndexDB, blogSharesTable, userTableStore, User} from "@/stores"
+import { IndexDB, blogSharesTable, userTableStore, User } from "@/stores"
 const indexDb: IndexDB = inject('db') as IndexDB;
 const props = defineProps({
-    tailor: { //是否启动裁剪功能
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    tailorType: { //裁剪的形状
-      type: String,
-      required: false,
-      validator: (value) => ['circle', 'square'].includes(value as string),
-    },
-    dataImageUrlId : {
-      type: [Number, File],
-      required: false,
-      default: -1
-    }
+  tailor: { //是否启动裁剪功能
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  tailorType: { //裁剪的形状
+    type: String,
+    required: false,
+    validator: (value) => ['circle', 'square'].includes(value as string),
+  },
+  dataImageUrlId: {
+    type: [Number, File],
+    required: false,
+    default: -1
+  }
 });
 
 watch(() => props.dataImageUrlId, (newVal) => {
@@ -66,12 +66,12 @@ watch(() => props.dataImageUrlId, (newVal) => {
 });
 
 const initData = () => {
-    if (props.dataImageUrlId instanceof File) return;
-    indexDb.getImage(props.dataImageUrlId).then(res => {
-      imgUrl.value = res; //之前的进行重新
-    }).catch(err => {
-      console.log(err);
-    })
+  if (props.dataImageUrlId instanceof File) return;
+  indexDb.getImage(props.dataImageUrlId).then(res => {
+    imgUrl.value = res; //之前的进行重新
+  }).catch(err => {
+    console.log(err);
+  })
 }
 
 onMounted(() => {
@@ -87,15 +87,15 @@ const canvasCopy = ref<HTMLElement>();
 const img = ref();
 let imgUrl = ref('');
 let cutImg = reactive({
-    //坐标
-    x: 0,
-    y: 0,
-    //宽高
-    w: 104, 
-    h: 104,
-    canvasWidth:104,
-    canvasHeight:104,
-    active:false
+  //坐标
+  x: 0,
+  y: 0,
+  //宽高
+  w: 104,
+  h: 104,
+  canvasWidth: 104,
+  canvasHeight: 104,
+  active: false
 });
 
 const imageChangeEnd = (e: any) => {
@@ -105,14 +105,14 @@ const imageChangeEnd = (e: any) => {
   if (e && e.h !== undefined) cutImg.h = e.h;
   // console.log('x:', cutImg.x, 'y:', cutImg.y, 'w:', cutImg.w, 'h:', cutImg.h);
   const cvs = document.createElement("canvas");
-  const ctx  = cvs.getContext("2d");
+  const ctx = cvs.getContext("2d");
   cvs!.width = cutImg.canvasWidth
   cvs!.height = cutImg.canvasHeight
   ctx!.drawImage(img.value, cutImg.x, cutImg.y, cutImg.w, cutImg.h, 0, 0, cutImg.canvasWidth, cutImg.canvasHeight);
   cvs.toBlob((blob) => {
     //blob 转换为file
     let randomName = Date.now();
-    const file = new File([blob!], 'file-' + randomName + '.png', {type: 'image/png'});
+    const file = new File([blob!], 'file-' + randomName + '.png', { type: 'image/png' });
     emit('file-tailor-changed', file);
   });
 
@@ -124,24 +124,24 @@ const imageChangeEnd = (e: any) => {
 
 }
 
-const onFileChange = (e: any) => {
-   const file = e.target.files[0];
-   // 临时读取文件
-   imgUrl.value = URL.createObjectURL(file);
-   emit('file-changed', file);
-};
+// const onFileChange = (e: any) => {
+//    const file = e.target.files[0];
+//    // 临时读取文件
+//    imgUrl.value = URL.createObjectURL(file);
+//    emit('file-changed', file);
+// };
 
-const resize = (e: any) => {
+// const resize = (e: any) => {
 
-}
+// }
 
 </script>
 <style lang="scss" scoped>
-.tailor-mask{
-    background: rgba(0, 0, 0, 0.5);
+.tailor-mask {
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.tailor{
+.tailor {
   background-color: transparent;
   width: 100%;
   height: 100%;

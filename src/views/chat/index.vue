@@ -45,9 +45,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import {onMounted, ref, reactive, inject} from "vue"
-import {navigation} from "@/router/index"
-import { User, userTableStore, IndexDB, ChatListType} from '@/stores/index'
+import { onMounted, ref, reactive, inject } from "vue"
+import { navigation } from "@/router/index"
+import { User, userTableStore, IndexDB, ChatListType } from '@/stores/index'
 
 const db: IndexDB = inject('db') as IndexDB;
 const userDb = userTableStore()
@@ -58,48 +58,48 @@ onMounted(() => {
     initData()
 })
 
-const initData = () =>{
+const initData = () => {
     //基本信息的获取
-    let res =  userDb.getCurrentUserMessage()
+    let res = userDb.getCurrentUserMessage()
     if (res?.code != -1) {
         Object.assign(curUser, res!.data);
         historyChatTables.value = curUser.chatListAi ?? []
     }
 }
 
-const goChat = (index: number) => {
-    navigation("chatDetail", historyChatTables.value[index].chatId)
-}
+// const goChat = (index: number) => {
+//     navigation("chatDetail", historyChatTables.value[index].chatId)
+// }
 
-const newChatTable = () => {
-    // 新建对话标签页
-    const TabsData: ChatListType = {
-        who: -1,
-        tabName: '新建标签页',
-        data: new Date().toLocaleString()
-    }
+// const newChatTable = () => {
+//     // 新建对话标签页
+//     const TabsData: ChatListType = {
+//         who: -1,
+//         tabName: '新建标签页',
+//         data: new Date().toLocaleString()
+//     }
 
-    db.storeChat({
-        bothId: [curUser.id as number, -1],
-        chatBody:[]
-    }).then((res) => {
-        TabsData.chatId = res;
+//     db.storeChat({
+//         bothId: [curUser.id as number, -1],
+//         chatBody:[]
+//     }).then((res) => {
+//         TabsData.chatId = res;
 
-        if (curUser.chatListAi == undefined) {
-            curUser.chatListAi = []
-        }
+//         if (curUser.chatListAi == undefined) {
+//             curUser.chatListAi = []
+//         }
 
-        curUser.chatListAi?.push(TabsData)
-        userDb.updataUser(curUser)
-        //前往详细的聊天页面
-        navigation("chatDetail", res);
-        initData()
-    })
-}
+//         curUser.chatListAi?.push(TabsData)
+//         userDb.updataUser(curUser)
+//         //前往详细的聊天页面
+//         navigation("chatDetail", res);
+//         initData()
+//     })
+// }
 
 
 
 </script>
 <style lang="">
-    
+
 </style>

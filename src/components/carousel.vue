@@ -30,25 +30,24 @@
         </swiper>
     </div>
 </template>
-<script lang="ts" setup >
-import {ref, inject, watch} from "vue"
+<script lang="ts" setup>
+import { ref, inject, watch } from "vue"
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/vue';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import {IndexDB, userTableStore} from '@/stores/index'
+import { IndexDB } from '@/stores/index'
 const db: IndexDB = inject('db') as IndexDB;
 let imageDateUrlList = ref([])
 
 
 const props = defineProps({
     imgList: {
-      type: Array,
-      required: true,
+        type: Array,
+        required: true,
     }
 });
 
@@ -60,13 +59,13 @@ watch(() => props.imgList, (newVal) => {
     initData(newVal as number[])
 });
 
-const initData = (newVal: number[]) =>{
-    db.getImagesByIds(newVal).then((res:any) => {
+const initData = (newVal: number[]) => {
+    db.getImagesByIds(newVal).then((res: any) => {
         imageDateUrlList.value = res
     })
 }
 
-const onSwiper = (swiper:any) => {
+const onSwiper = (swiper: any) => {
 }
 
 const onSlideChange = () => {
@@ -74,5 +73,5 @@ const onSlideChange = () => {
 
 </script>
 <style lang="">
-    
+
 </style>
