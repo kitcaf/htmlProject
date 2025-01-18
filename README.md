@@ -8,7 +8,7 @@
 
 ## 👀 在线访问
 
-[访问地址](https://kitcaf.github.io/htmlProject/)
+https://html-project-kpps.vercel.app/
 
 > 注：由于数据存储在 IndexDB 中，所以数据需要自己手动导入查看效果。
 
